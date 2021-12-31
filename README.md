@@ -10,6 +10,8 @@ In order to run Ghost using this project, the following packages must be install
 Replace your own data within configurations and compose files.
 ```
 git clone https://github.com/ierturk/ghost-docker.git
+cd ghost-docker
+git submodule update --init
 cd ghost-docker/nginx-ssl
 docker-compose up -d
 docker-compose down
