@@ -1,0 +1,3 @@
+[submodule "nginx-ssl"]
+	path = nginx-ssl
+	url = https://github.com/ierturk/nginx-ssl-docker.git
