@@ -42,4 +42,6 @@ services:
       - "${NGINX_HTTPS_PORT:-443}:443"
     volumes:
       - ${NGINX_CONF_PATH:-./conf.d}:/etc/nginx/conf.d
-
+      - ${NGINX_WWWW_ROOT_PATH:-./public}:/var/www/html
+      - ${SSL_CONF_PATH:-./nginx-ssl/certbot/conf}:/etc/nginx/ssl
+      - ${SSL_DATA_PATH:-./nginx-ssl/certbot/data}:/var/www/certbot
