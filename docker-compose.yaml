@@ -59,7 +59,7 @@ services:
 
   remark42:
     # build: .
-    image: umputun/remark42:v1.8.1
+    image: umputun/remark42:${REMARK42_IMAGE_TAG}
     container_name: blog-remark42
     hostname: remark42
     restart: always
@@ -70,42 +70,40 @@ services:
         max-size: "10m"
         max-file: "5"
 
-    # uncomment to expose directly (no proxy)
-    # ports:
-    #   - "80:8080"
-
     environment:
-      - REMARK_URL=https://erturk.me/remark42
-      - SITE=erturk.me
-      - SECRET=xxxxxxxx
-      - STORE_BOLT_PATH=/srv/var/db
-      - BACKUP_PATH=/srv/var/backup
-      - DEBUG=true
-      - ADMIN_PASSWD=xxx
-      - AUTH_GITHUB_CID=7e6021dc2b32bb9d133c
-      - AUTH_GITHUB_CSEC=d9a7e6b915a8638ec84cdba7f557350435094e5d
-      # - AUTH_GOOGLE_CID=xxxxxxxx
-      # - AUTH_GOOGLE_CSEC=xxxxxxxx
-      # - AUTH_EMAIL_ENABLE=true
-      # - AUTH_EMAIL_HOST=smtp.mailgun.org
-      # - AUTH_EMAIL_PORT=465
-      # - AUTH_EMAIL_FROM=noreply@mail.devbitsandbytes.com
-      # - AUTH_EMAIL_SUBJ=remark42 confirmation
-      # - AUTH_EMAIL_CONTENT_TYPE=text/html
-      # - AUTH_EMAIL_TLS=true
-      # - AUTH_EMAIL_USER=postmaster@mail.devbitsandbytes.com
-      # - AUTH_EMAIL_PASSWD=xxxxxxxx
-      # - AUTH_EMAIL_TIMEOUT=10s
-      # - ADMIN_SHARED_EMAIL=support@devbitsandbytes.com #where Admin related emails need to be sent
-      # - NOTIFY_EMAIL_ADMIN=true
-      # - NOTIFY_EMAIL_FROM=noreply@mail.devbitsandbytes.com
-      # - SMTP_HOST=smtp.mailgun.org
-      # - SMTP_PORT=465
-      # - SMTP_TLS=true
-      # - SMTP_USERNAME=postmaster@mail.devbitsandbytes.com
-      # - SMTP_PASSWORD=xxxxxxxx
-      # - NOTIFY_USERS=email
-      # - NOTIFY_ADMINS=email
-      # - NOTIFY_TYPE=email
+      - REMARK_URL=${REMARK42_REMARK_URL}
+      - SITE=${REMARK42_SITE}
+      - SECRET=${REMARK42_SECRET}
+      - STORE_BOLT_PATH=${REMARK42_STORE_BOLT_PATH}
+      - BACKUP_PATH=${REMARK42_BACKUP_PATH}
+      - DEBUG=${REMARK42_DEBUG}
+      - ADMIN_PASSWD=${REMARK42_ADMIN_PASSWD}
+      - AUTH_GITHUB_CID=${REMARK42_AUTH_GITHUB_CID}
+      - AUTH_GITHUB_CSEC=${REMARK42_AUTH_GITHUB_CSEC}
+      - AUTH_FACEBOOK_CID=${REMARK42_AUTH_FACEBOOK_CID}
+      - AUTH_FACEBOOK_CSEC=${REMARK42_AUTH_FACEBOOK_CSEC}
+      # - AUTH_TWITTER_CID=${}
+      # - AUTH_TWITTER_CSEC=${}
+      - AUTH_EMAIL_ENABLE=${REMARK42_AUTH_EMAIL_ENABLE}
+      - AUTH_EMAIL_HOST=${REMARK42_AUTH_EMAIL_HOST}
+      - AUTH_EMAIL_PORT=${REMARK42_AUTH_EMAIL_PORT}
+      - AUTH_EMAIL_FROM=${REMARK42_ARK42_AUTH_EMAIL_FROM}
+      - AUTH_EMAIL_SUBJ=${REMARK42_ARK42_AUTH_EMAIL_SUBJ}
+      - AUTH_EMAIL_CONTENT_TYPE=${REMARK42_AUTH_EMAIL_CONTENT_TYPE}
+      - AUTH_EMAIL_TLS=${REMARK42_AUTH_EMAIL_TLS}
+      - AUTH_EMAIL_USER=${REMARK42_AUTH_EMAIL_USER}
+      - AUTH_EMAIL_PASSWD=${REMARK42_AUTH_EMAIL_PASSWD}
+      - AUTH_EMAIL_TIMEOUT=${REMARK42_AUTH_EMAIL_TIMEOUT}
+      - ADMIN_SHARED_EMAIL=${REMARK42_ADMIN_SHARED_EMAIL}
+      - NOTIFY_EMAIL_ADMIN=${REMARK42_NOTIFY_EMAIL_ADMIN}
+      - NOTIFY_EMAIL_FROM=${REMARK42_NOTIFY_EMAIL_FROM}
+      - SMTP_HOST=${REMARK42_SMTP_HOST}
+      - SMTP_PORT=${REMARK42_SMTP_PORT}
+      - SMTP_TLS=${REMARK42_SMTP_TLS}
+      - SMTP_USERNAME=${REMARK42_SMTP_USERNAME}
+      - SMTP_PASSWORD=${REMARK42_SMTP_PASSWORD}
+      - NOTIFY_USERS=${REMARK42_NOTIFY_USERS}
+      - NOTIFY_ADMINS=${REMARK42_NOTIFY_ADMINS}
+      - NOTIFY_TYPE=${REMARK42_NOTIFY_TYPE}
     volumes:
-      - ./remark42:/srv/var
+      - ${REMARK42_HOST_PATH}:/srv/var
