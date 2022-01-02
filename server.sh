@@ -16,7 +16,7 @@ then
   exit 1
 fi
 
-if [[ ( "$CMD" != "start"  && "$CMD" != "stop" && "$CMD" != "restart") ]]
+if [[ ( "$CMD" != "init" && "$CMD" != "start"  && "$CMD" != "stop" && "$CMD" != "restart") ]]
 then
 	echo "EXITING: $CMD command is not supported!"
   exit 1
@@ -46,31 +46,49 @@ then
 fi
 
 echo "Creating host folders..."
+if [[ ! -d ./certbot ]]
+then
+  mkdir -p ./certbot
+fi    
 if [[ ! -d ./ghost ]]
 then
   mkdir -p ./ghost
 fi    
-if [[ ! -d ./mariadb-data ]]
+if [[ ! -d ./mariadb ]]
 then
-  mkdir -p ./mariadb-data
+  mkdir -p ./mariadb
+fi    
+if [[ ! -d ./remark42 ]]
+then
+  mkdir -p ./remark42
 fi    
 
-pushd blog/ > /dev/null
+
+pushd . > /dev/null
 
 case $CMD in
 
+  init)
+    echo "initializing..."
+    export NGINX_CONF_PATH=${NGINX_CONF_INIT_PATH}
+    docker-compose up -d
+  ;;
+
   start)
     echo "starting..."
+    export NGINX_CONF_PATH=${NGINX_CONF_DEFAULT_PATH}
     docker-compose up -d 
   ;;
 
   stop)
     echo "stopping..."
+    export NGINX_CONF_PATH=${NGINX_CONF_DEFAULT_PATH}
     docker-compose down
   ;;
 
   restart)
-    echo "restarting..."  
+    echo "restarting..."
+    export NGINX_CONF_PATH=${NGINX_CONF_DEFAULT_PATH}
     docker-compose restart
   ;;
 
@@ -78,5 +96,3 @@ case $CMD in
     echo "Unsupported command!"
   ;;
 esac
-
-exit 0

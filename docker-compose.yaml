@@ -43,7 +43,7 @@ services:
       - ${NGINX_HTTP_PORT}:80
       - ${NGINX_HTTPS_PORT}:443
     volumes:
-      - ${NGINX_CONF_PATH}:/etc/nginx/conf.d
+      - ${NGINX_CONF_PATH}:/etc/nginx/conf.d/default.conf
       - ${NGINX_WWWW_ROOT_PATH}:/var/www/html
       - ${CERTBOT_CONF_PATH}:/etc/nginx/ssl
       - ${CERTBOT_DATA_PATH}:/var/www/certbot
@@ -105,5 +105,7 @@ services:
       - NOTIFY_USERS=${REMARK42_NOTIFY_USERS}
       - NOTIFY_ADMINS=${REMARK42_NOTIFY_ADMINS}
       - NOTIFY_TYPE=${REMARK42_NOTIFY_TYPE}
+      # - AUTH_ANON=${REMARK42_AUTH_ANON}
+      # - ANON_VOTE=${REMARK42_ANON_VOTE}
     volumes:
       - ${REMARK42_HOST_PATH}:/srv/var
