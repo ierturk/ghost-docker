@@ -5,3 +5,7 @@ mariadb-data/*
 
 ghost/*
 !ghost/.gitkeep
+
+!ghost/themes
+ghost/themes/*
+!ghost/themes/casper-v472
