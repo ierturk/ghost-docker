@@ -9,14 +9,17 @@ In order to run Ghost using this project, the following packages must be install
 ## Instructions
 Replace your own data within configurations and compose files.
 ```
-git clone https://github.com/ierturk/ghost-docker.git
-cd ghost-docker
-git submodule update --init
-cd ghost-docker/nginx-ssl
-docker-compose up -d
-docker-compose down
-cd ..
-docker-compose up -d
+>> Clone Repo
+
+$ git clone https://github.com/ierturk/ghost-docker.git
+$ cd ghost-docker
+$ cp template.env .prod.env
+
+>> Replace your own data within .prod.env file and nginx/*.conf files
+
+$ ./server.sh .prod.env init
+$ ./server.sh .prod.env stop
+$ ./server.sh .prod.env start
 ```
 ____
 Copyright © 2021 StarGate, Inc.
