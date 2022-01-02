@@ -7,3 +7,6 @@ ghost/*
 !ghost/themes
 ghost/themes/*
 !ghost/themes/casper-v472
+
+remark42/*
+!remark42/.gitkeep

@@ -56,3 +56,56 @@ services:
       - ${CERTBOT_CONF_PATH}:/etc/letsencrypt
       - ${CERTBOT_LOG_PATH}:/var/log/letsencrypt
       - ${CERTBOT_DATA_PATH}:/var/www/certbot
+
+  remark42:
+    # build: .
+    image: umputun/remark42:v1.8.1
+    container_name: blog-remark42
+    hostname: remark42
+    restart: always
+
+    logging:
+      driver: json-file
+      options:
+        max-size: "10m"
+        max-file: "5"
+
+    # uncomment to expose directly (no proxy)
+    # ports:
+    #   - "80:8080"
+
+    environment:
+      - REMARK_URL=https://erturk.me/remark42
+      - SITE=erturk.me
+      - SECRET=xxxxxxxx
+      - STORE_BOLT_PATH=/srv/var/db
+      - BACKUP_PATH=/srv/var/backup
+      - DEBUG=true
+      - ADMIN_PASSWD=xxx
+      - AUTH_GITHUB_CID=7e6021dc2b32bb9d133c
+      - AUTH_GITHUB_CSEC=d9a7e6b915a8638ec84cdba7f557350435094e5d
+      # - AUTH_GOOGLE_CID=xxxxxxxx
+      # - AUTH_GOOGLE_CSEC=xxxxxxxx
+      # - AUTH_EMAIL_ENABLE=true
+      # - AUTH_EMAIL_HOST=smtp.mailgun.org
+      # - AUTH_EMAIL_PORT=465
+      # - AUTH_EMAIL_FROM=noreply@mail.devbitsandbytes.com
+      # - AUTH_EMAIL_SUBJ=remark42 confirmation
+      # - AUTH_EMAIL_CONTENT_TYPE=text/html
+      # - AUTH_EMAIL_TLS=true
+      # - AUTH_EMAIL_USER=postmaster@mail.devbitsandbytes.com
+      # - AUTH_EMAIL_PASSWD=xxxxxxxx
+      # - AUTH_EMAIL_TIMEOUT=10s
+      # - ADMIN_SHARED_EMAIL=support@devbitsandbytes.com #where Admin related emails need to be sent
+      # - NOTIFY_EMAIL_ADMIN=true
+      # - NOTIFY_EMAIL_FROM=noreply@mail.devbitsandbytes.com
+      # - SMTP_HOST=smtp.mailgun.org
+      # - SMTP_PORT=465
+      # - SMTP_TLS=true
+      # - SMTP_USERNAME=postmaster@mail.devbitsandbytes.com
+      # - SMTP_PASSWORD=xxxxxxxx
+      # - NOTIFY_USERS=email
+      # - NOTIFY_ADMINS=email
+      # - NOTIFY_TYPE=email
+    volumes:
+      - ./remark42:/srv/var
