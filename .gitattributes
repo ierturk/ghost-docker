@@ -3,3 +3,6 @@ certbot/** filter=git-crypt diff=git-crypt
 ghost/** filter=git-crypt diff=git-crypt
 mariadb/** filter=git-crypt diff=git-crypt
 remark42/** filter=git-crypt diff=git-crypt
+mariadb/ib_logfile0 filter=lfs diff=lfs merge=lfs -text
+mariadb/ibtmp1 filter=lfs diff=lfs merge=lfs -text
+mariadb/ibdata1 filter=lfs diff=lfs merge=lfs -text
