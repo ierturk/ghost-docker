@@ -1,0 +1,5 @@
+.env.* filter=git-crypt diff=git-crypt
+certbot/** filter=git-crypt diff=git-crypt
+ghost/** filter=git-crypt diff=git-crypt
+mariadb/** filter=git-crypt diff=git-crypt
+remark42/** filter=git-crypt diff=git-crypt
